@@ -16,6 +16,7 @@
     --primary: var(--harmonyBlue);
     --secondary: var(--white);
     --globalTransitionSpeed: 300ms;
+    --harmonyTeal: rgb(110 168 178);
 }
 
 body {

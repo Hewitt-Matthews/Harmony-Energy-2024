@@ -357,7 +357,7 @@ li.menu-button a:hover {
 		justify-content: center;
 		width: 100%;
 		height: auto;
-		background-color: rgb(var(--harmonyBlue));
+		background-color: var(--harmonyTeal);
 		padding: 150px min(2em, 5vw) min(2em, 5vw);
 		transform: translateY(-200%);
 		transition: 300ms;
@@ -431,7 +431,7 @@ li.menu-button a:hover {
 	.header-nav.mobile .toggle .line {
 		width: 100%;
 		height: 3px;
-		background: rgb(var(--primary));
+		background: rgb(var(--white));
 		transition: 250ms;
 	}
 
