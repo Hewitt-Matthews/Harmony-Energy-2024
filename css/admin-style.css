@@ -1,0 +1,64 @@
+/******************************************************************************************
+ * Admin Bar Styles
+ ******************************************************************************************/
+#wpadminbar {
+	background-color: rgb(40 38 47);
+}
+#wpadminbar .ab-item .ab-icon:before, #wpadminbar ul li .ab-item:before {
+	color: #fff;
+}
+#wpadminbar .ab-item:hover .ab-icon:before, #wpadminbar ul li:hover .ab-item:before, #wpadminbar .ab-item:focus .ab-icon:before, #wpadminbar ul li:focus .ab-item:before {
+	color: rgb(43 236 211);
+}
+#wpadminbar:not(.mobile) .ab-top-menu>li:hover>.ab-item {
+	color: rgb(43 236 211);
+}
+#wpadminbar:not(.mobile)>#wp-toolbar li:hover span.ab-label {
+	color: rgb(43 236 211);
+}
+/******************************************************************************************
+ * Admin Menu Styles
+ ******************************************************************************************/
+#adminmenuwrap {
+	background-color: rgb(40 38 47);
+}
+#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu {
+	background: rgb(43 236 211);
+	color: #000;
+}
+#adminmenu .wp-has-current-submenu div.wp-menu-image:before {
+	color: #000;
+}
+#adminmenu li:hover div.wp-menu-image:before, #adminmenu li:focus div.wp-menu-image:before {
+    color: rgb(40 38 47);
+}
+#adminmenu li:hover, #adminmenu li:focus {
+    background-color: #2c3338;
+}
+#adminmenu li:hover a, #adminmenu li:focus a {
+    color: rgb(43 236 211);
+}
+#adminmenu a:hover {
+    color: rgb(43 236 211);
+}
+#adminmenu li:hover div.wp-menu-image:before {
+    color: rgb(43 236 211);
+}
+#adminmenu li.wp-menu-open:hover div.wp-menu-image:before, #adminmenu li.wp-menu-open:focus div.wp-menu-image:before {
+	color: rgb(40 38 47);
+}
+#adminmenu li.wp-menu-open a {
+	color: #000;
+}
+#adminmenu li.wp-menu-open:hover a, #adminmenu li.wp-menu-open:focus a {
+	color: #000;
+}
+#adminmenu .wp-has-current-submenu ul>li>a, #adminmenu li.wp-menu-open:hover ul>li>a, #adminmenu li.wp-menu-open:focus ul>li>a {
+	color: #fff;
+}
+#adminmenu .wp-has-current-submenu ul>li>a:hover, #adminmenu .wp-has-current-submenu ul>li>a:focus {
+	color: rgb(43 236 211);
+}
+#adminmenu .wp-submenu li.current a {
+	color: rgb(43 236 211);
+}

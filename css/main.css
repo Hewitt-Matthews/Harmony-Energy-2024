@@ -1,0 +1,648 @@
+/* Core Theme Styles */
+:root {
+    --h1: 64px;
+    --h2: calc(var(--h1) - 16px);
+    --h3: calc(var(--h2) - 8px);
+    --h4: calc(var(--h3) - 8px);
+    --h1FontSize: calc(var(--h1) - calc(var(--h1) / 10));
+    --h2FontSize: calc(var(--h2) - calc(var(--h2) / 10));
+    --h3FontSize: calc(var(--h3) - calc(var(--h3) / 10));
+    --h4FontSize: calc(var(--h4) - calc(var(--h4) / 10));
+    --white: 255 255 255;
+    --black: 26 26 26;
+    --harmonyBlue: 0 69 119;
+    --blueGrey: 51 72 104;
+    --lightBlue: 110 168 178;
+    --primary: var(--harmonyBlue);
+    --secondary: var(--white);
+    --globalTransitionSpeed: 300ms;
+}
+
+body {
+    background-color: rgb(var(--primary));
+    /* transition: var(--globalTransitionSpeed); */
+    transition: 1s;
+}
+
+[data-cky-tag] {
+   visibility: visible!important;
+}
+
+.et_pb_section,
+#page-container #main-content {
+    background-color: rgb(var(--primary) / 0%);
+}
+
+body.inverted {
+    --primary: var(--white);
+    --secondary: var(--black);
+}
+
+.et_pb_section:not(.et_pb_with_background) :is(p, div, li, a, span, h1, h2, h3, h4, .et_pb_button) {
+    color: rgb(var(--secondary));
+}
+
+/* CLS Fix, See JS */
+
+html:not(html.et-fb-preview--wireframe) {
+    opacity: 0;
+}
+
+/* Word Count */
+.word-count {
+    display: none;
+    width: fit-content;
+    background-color: rgb(var(--black));
+    color: rgb(var(--white))!important;
+    padding: 0.5em 1em;
+    border-radius: 50px;
+    font-size: 12px;
+}
+
+.show-word-count .word-count {
+    display: block;
+}
+
+/* Element Snapping 
+
+html {
+    scroll-snap-type: y proximity;
+    height: 100vh;
+    overflow: auto;
+}
+
+@media only screen and (max-width: 980px) {
+    html {
+        scroll-snap-type: none!important;
+    }  
+}
+
+#page-container #et-main-area .et_pb_section {
+    scroll-snap-align: start;
+    z-index: 0;
+} */
+
+/* @media only screen and (min-width: 980px) {
+    #page-container #et-main-area .et_pb_section {
+        max-height: 100vh;
+        overflow: auto;
+    }  
+
+    #page-container #et-main-area .et_pb_section::-webkit-scrollbar{
+        display: none;
+    }
+} */
+
+/******************************************************************************************
+ * Fonts Styles
+ ******************************************************************************************/
+
+body h1 {
+	font-size: min(var(--h1FontSize), 10vw);
+}
+
+body h2 {
+	font-size: min(var(--h2FontSize), 9vw);
+}
+
+body h3 {
+	font-size: min(var(--h3FontSize), 8vw);
+}
+
+body h4 {
+	font-size: min(var(--h4FontSize), 7vw);
+}
+
+:is(p, div, a, span, h1, h2, h3, h4) {
+    font-weight: 300;
+}
+
+:is(p, div, a, span) {
+    line-height: 1.5;
+}
+
+/* Button Styles */
+
+
+/* These two bits of CSS set the Divi Buttons to be inline block unless a position is set on them in the Divi Builder */
+#page-container .et_pb_button_module_wrapper {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+#page-container .et_pb_button_module_wrapper.et_pb_button_alignment_center,
+#page-container .et_pb_button_module_wrapper.et_pb_button_alignment_right {
+	display: block;
+	margin-right: 0;
+}
+
+#page-container .et_pb_button,
+.btn-primary:not(li.btn-primary),
+li.btn-primary > a,
+.gform_wrapper.gravity-theme .gform_drop_area button,
+.gform_button {
+    padding: 1em 1.5em!important;
+    line-height: 1!important;
+    font-weight: 400;
+}
+
+.btn-primary:not(li.btn-primary),
+li.btn-primary > a,
+.gform_wrapper.gravity-theme .gform_drop_area button,
+.gform_button  {
+	display: inline-block;
+	background-color: rgb(var(--secondary) / 0%);
+    border: solid 2px rgb(var(--secondary));
+    border-radius: 50px;
+    color: rgb(var(--secondary));
+    cursor: pointer;
+	transition: 300ms;
+}
+
+.btn-primary:not(li.btn-primary):hover,
+li.btn-primary > a:hover,
+.gform_wrapper.gravity-theme .gform_drop_area button:hover,
+.gform_button:hover {
+    background-color: rgb(var(--secondary));
+    color: rgb(var(--primary));
+}
+
+.btn-primary:not(li.btn-primary) .dark {
+	background-color: rgb(var(--primary));
+}
+
+.btn-primary:not(li.btn-primary) .dark:hover {
+	color: #000;
+	background-color: rgb(255 255 255);
+}
+body.single-post a.big-button {
+	background-color: rgb(var(--primary));
+/* 	background-color: rgb(var(--secondary));
+    color: #ffffff; */
+}
+
+body.single-post .et_pb_section.et_pb_with_background :is( a.big-button) {
+	background-color: rgb(var(--secondary));
+    color: #ffffff;
+}
+body.single-post .et_pb_section:not(.et_pb_with_background) :is( a.big-button) {
+	background-color: rgb(var(--secondary));
+    color: rgb(var(--primary));
+}
+
+/******************************************************************************************
+ * Blog Page styles
+ ******************************************************************************************/
+
+
+.share .icons {
+    display: grid;
+    gap: 1em;
+    justify-content: flex-end;
+}
+
+.share .icons span {
+    font-size: 24px;
+    border: solid 1px;
+    padding: 10px;
+    border-radius: 50%;
+    transition: 300ms;
+}
+
+.share .icons a:hover span {
+    background-color: rgb(var(--secondary));
+    color: rgb(var(--primary));
+}
+
+#main-content:not(.blog #main-content) > div > div > .et_pb_section_1_tb_body {
+    padding: 5em 0;
+}
+
+/******************************************************************************************
+ * Search Form Styles
+ ******************************************************************************************/
+
+form[role="search"] > div {
+    display: flex;
+    position: relative;
+}
+
+form[role="search"] > div input[type="text"] {
+    padding: 1em;
+    font-size: 16px;
+    background-color: #E8E8E4;
+    border: none;
+	width: 100%;
+}
+
+form[role="search"] > div input#searchsubmit {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 2;
+    opacity: 0;
+}
+
+form[role="search"] > div::after {
+    content: "\55";
+    position: absolute;
+    font-family: 'ETmodules';
+    top: 50%;
+    transform: translateY(-50%) rotate(270deg);
+    font-size: 18px;
+    right: 10px;
+    z-index: 1;
+}
+
+/******************************************************************************************
+ * Loading Screen Styles
+ ******************************************************************************************/
+
+ #loading-screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    background: #fff;
+    display: grid;
+    place-content: center;
+	opacity: 1;
+	transition: 1s;
+}
+
+#loading-screen img {
+    width: min(60%, 300px);
+    margin: 0 auto;
+	animation: loading 5s infinite;
+}
+
+#loading-screen.fade {
+    opacity: 0;
+}
+
+@keyframes loading {
+	
+	50% {
+		transform: scale(1.15);
+	}
+	
+}
+
+
+/******************************************************************************************
+ * Tab Section Styles
+ ******************************************************************************************/
+
+
+#page-container .tabs-wrapper .tabs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+#page-container .tabs-wrapper .tabs .tab {
+    text-align: center;
+    position: relative;
+    display: grid;
+    align-items: center;
+}
+
+#page-container .tabs-wrapper .tabs .tab * {
+    cursor: pointer;
+}
+
+#page-container .tabs-wrapper .tabs .tab input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+}
+
+#page-container .tabs-wrapper .tabs .tab input + label {
+    padding: 0.4em 0;
+    color: rgb(var(--secondary) / 70%);
+}
+
+#page-container .et_pb_with_background .tabs-wrapper .tabs .tab input + label {
+    color: rgb(var(--black) / 70%);
+}
+
+#page-container .tabs-wrapper .tabs .tab input:checked + label {
+    border-bottom: solid 2px rgb(var(--secondary));
+    color: rgb(var(--secondary));
+}
+
+#page-container .et_pb_with_background .tabs-wrapper .tabs .tab input:checked + label {
+    border-bottom: solid 2px rgb(var(--black));
+    color: rgb(var(--black));
+}
+
+#page-container .tabs-wrapper:not(.vertical-tabs) .content-wrapper {
+    margin-top: 2em;
+}
+
+#page-container .tabs-wrapper .tab-content {
+    position: absolute;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+    gap: 2em;
+    opacity: 0;
+    transform: scale(0);
+    z-index: -1;
+    left: -9999vw;
+    transition: opacity 300ms;
+}
+
+#page-container .vertical-tabs.tabs-wrapper .tab-content {
+    display: block;
+}
+
+#page-container .tabs-wrapper .tab-content .btn-primary {
+    margin-top: 1em;
+}
+
+@media only screen and (max-width: 768px) {
+
+#page-container .tabs-wrapper .tab-content {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+}
+
+#page-container .tabs-wrapper .tab-content.active {
+    position: relative;
+    opacity: 1;
+    transform: scale(1);
+    z-index: 1;
+    left: 0;
+}
+
+#page-container .tabs-wrapper .tab-content .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em 0.3em;
+    margin: 1em 0;
+}
+
+#page-container .tabs-wrapper .tab-content .badges .badge {
+    background-color: rgba(64 64 64);
+    border-radius: 50px;
+    padding: 0.3em 1em;
+    font-size: 16px;
+}
+
+/* Vertical Tabs */
+#page-container .vertical-tabs.tabs-wrapper {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 5em;
+}
+
+.vertical-tabs.tabs-wrapper > .tabs {
+    gap: 2em;
+}
+
+#page-container .vertical-tabs.tabs-wrapper .tabs .tab {
+    text-align: left;
+    font-size: var(--h4FontSize);
+    display: block;
+}
+
+#page-container .vertical-tabs.tabs-wrapper .content-wrapper {
+    font-size: calc(var(--h4FontSize) - 5px);
+}
+
+#page-container .vertical-tabs.tabs-wrapper .tabs .tab input + label {
+    color: rgb(var(--secondary) / 20%);
+    border: none;
+}
+
+#page-container .vertical-tabs.tabs-wrapper .tabs .tab input:hover + label {
+    color: rgb(var(--secondary) / 60%);
+}
+
+#page-container .vertical-tabs.tabs-wrapper .tabs .tab input:checked + label {
+    color: rgb(var(--secondary));
+}
+
+#page-container .tabs-wrapper .mobile-content {
+    display: none;
+}
+
+@media only screen and (max-width: 980px) {
+
+    #page-container .vertical-tabs.tabs-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    #page-container .vertical-tabs.tabs-wrapper .content-wrapper {
+        display: none;
+    }
+
+    #page-container .tabs-wrapper .mobile-content {
+        display: block;
+    }
+
+    #page-container .vertical-tabs.tabs-wrapper label {
+        font-size: 24px;
+        margin-bottom: 1rem;
+        display: block;
+        color: rgb(var(--secondary))!important;
+    }
+
+    #page-container .tabs-wrapper .mobile-content p {
+        font-size: 18px;
+    }
+        
+    
+}
+
+/******************************************************************************************
+ * Offset Container Styles
+ ******************************************************************************************/
+
+.offset-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    gap: 2em;
+}
+
+.offset-container > .info {
+    border-top: solid 1px;
+    display: grid;
+    padding-top: 2em;
+    gap: 2em;
+}
+
+/******************************************************************************************
+ * Animated Stats Container Styles
+ ******************************************************************************************/
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 130px), 1fr));
+/* 	grid-template-columns: repeat(auto-fit, minmax(min(100%, 275px), 1fr)); */
+    gap: 2em;
+}
+
+.stats-container * {
+    color: rgb(var(--secondary));
+}
+
+.stats-container .stat {
+    text-align: center;
+}
+
+.stats-container .number-container {
+    line-height: 1;
+}
+
+.stats-container .description {
+    font-size: 16px;
+}
+
+.stats-container .stat .number {
+    font-size: 48px;
+    font-weight: 500;
+}
+
+.stats-container .stat .description {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 768px) {
+	
+	.et_pb_row:has(.stats-container) {
+		width: 95%;
+	}
+	
+	.stats-container {
+/* 		grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); */
+		grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+		gap: 0.5em 0;
+	}
+	
+	.stats-container .stat .number {
+		font-size: 38px; 
+	}
+	
+}
+
+/******************************************************************************************
+ * Gravity Form Styles
+ ******************************************************************************************/
+
+.gform_wrapper.gravity-theme .gfield_label {
+    font-weight: 400;
+}
+
+.ginput_container input,
+.ginput_container textarea {
+    padding: 1em 1.5em!important;
+    color: #000;
+	background-color: #F8F8F8;
+	border: solid 1px #E2E2E2;
+}
+
+.ginput_container.ginput_container_consent label {
+    font-size: 16px;
+}
+
+.ginput_container.ginput_container_consent label a {
+    color: rgb(var(--primary));
+    font-weight: 600;
+}
+
+.gform_required_legend {
+    display: none;
+}
+
+.gform_button {
+	font-size: 16px;
+}
+
+.white-label label,
+.white-label legend {
+    color: #fff;
+}
+
+.gform_description {
+    padding: 0;
+}
+
+h2.gform_submission_error.hide_summary {
+    padding: 0;
+    font-size: 17px;
+}
+
+#gform_confirmation_message_1 {
+    color: rgb(var(--primary));
+    background: #fff;
+    border-radius: 5px;
+    padding: 1em;
+}
+
+
+/******************************************************************************************
+ * Search Filters Styles
+ ******************************************************************************************/
+
+
+.search-filters {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: solid 1px;
+    width: 100vw;
+    padding-left: calc(calc(100vw - min(1250px, 80vw)) / 2);
+    margin-left: calc(calc(calc(100vw - min(1250px, 80vw)) / 2) / -1);
+}
+
+.search-filters select {
+    background-color: rgb(var(--primary));
+    color: rgb(var(--secondary));
+    padding: 1.5em;
+    border-top: none;
+    border-left: none;
+    border-bottom: none;
+    font-size: 17px;
+    font-weight: 300;
+}
+
+option.cat-list_item[data-id="knaresborough"] {
+    display: none;
+}
+
+/******************************************************************************************
+ * Footer Styles
+ ******************************************************************************************/
+
+footer ul {
+    padding: 0!important;
+}
+
+footer ul li {
+    list-style: none;
+}
+
+footer ul li:not(:last-child) {
+    margin-bottom: 1em;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+}
+
+.inverted footer #white-logo {
+	display: none;
+}
+
+footer #blue-logo {
+	display: none;
+}
+
+.inverted footer #blue-logo {
+	display: block;
+}
