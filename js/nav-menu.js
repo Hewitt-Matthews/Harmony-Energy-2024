@@ -1,9 +1,9 @@
 const navMenuInit = () => {
 	
-	//Mobile nav menu toggle
+	//Menu toggle functionality for both mobile and desktop
 	
-	const navToggles = document.querySelectorAll('.header-nav.mobile .toggle');
-	const toggleLines = document.querySelectorAll('.header-nav.mobile .toggle .line');
+	const navToggles = document.querySelectorAll('.header-nav .toggle');
+	const toggleLines = document.querySelectorAll('.header-nav .toggle .line');
 	const fixedHeader = document.querySelector('header');
 	const fixedHeaderBG = fixedHeader.style.backgroundColor;
 	const contentArea = document.querySelector('#et-main-area');
@@ -11,28 +11,32 @@ const navMenuInit = () => {
 	const toggleMenu = (e) => {
 		
 		let toggle; 
+		let menuContainer;
 		
-		if( e.target.classList.contains('line') ) {
+		//Determine which element was clicked and which menu to toggle
+		if (e.target.classList.contains('line')) {
 			toggle = e.target.parentElement;
-		} else if (e.target.classList.contains('header-nav')) {
-			toggle = e.target.children[1];
+			menuContainer = toggle.closest('.header-nav').querySelector('.menu-primary-menu-container');
+		} else if (e.target.classList.contains('toggle')) {
+			toggle = e.target;
+			menuContainer = toggle.closest('.header-nav').querySelector('.menu-primary-menu-container');
 		} else {
 			toggle = e.target;
 		}
 		
-		const mobileNav = document.querySelector('header .mobile-nav .menu-primary-menu-container');
-		
 		fixedHeader.classList.toggle('active');
 		
-		if(fixedHeader.classList.contains('active')) {
-			fixedHeader.setAttribute('style', 'background-color: #fff!important;')
+		//Toggle background color
+		if (fixedHeader.classList.contains('active')) {
+			fixedHeader.setAttribute('style', 'background-color: #fff!important;');
 		} else {
-			fixedHeader.setAttribute('style', `background-color: ${fixedHeaderBG}!important;`)
+			fixedHeader.setAttribute('style', `background-color: ${fixedHeaderBG}!important;`);
 		}
 		
-		mobileNav.classList.toggle('active');
+		menuContainer.classList.toggle('active');
 		contentArea.classList.toggle('pop-up');
 		
+		//Toggle hamburger menu lines
 		toggleLines.forEach((line) => {
 			line.classList.toggle('active');
 		})

@@ -800,37 +800,23 @@ function header_func(  ) {
 	wp_enqueue_style( 'nav_styles', get_stylesheet_directory_uri() . '/css/nav-menu.css', array(), THEME_VERSION);
 	?>	
 
-	<nav class="header-nav desktop">
-
+	<nav class="header-nav">
 		<div class="logo-container">
 		   <a href="/"><?= do_shortcode('[logo]') ?></a>
 		</div>
 
-		<?php wp_nav_menu( array( 'menu' => "Primary Menu" ) ); ?>
+		<div class="toggle">
+			<span class="line one"></span>
+			<span class="line two"></span>
+			<span class="line three"></span>
+		</div>
 
+		<div class="menu-container">
+			<?php wp_nav_menu( array( 'menu' => "Primary Menu" ) ); ?>
+		</div>
 	</nav>
 
-	<div class="header-nav mobile">
-		
-		<div class="logo-container">
-		   <a href="/"><?= do_shortcode('[logo]') ?></a>
-		</div>
-		
-		<div class="toggle">
-			<div class="line one"></div>
-			<div class="line two"></div>
-			<div class="line three"></div>
-		</div>
-		
-		<nav class="mobile-nav">
-
-			<?php wp_nav_menu( array( 'menu' => "Primary Menu" ) ); ?>
-
-		</nav>
-
-	</div>
-
-    <?php return ob_get_clean();
+	<?php return ob_get_clean();
 };
 
 //Build Shortcode to Grab Footer Menus
