@@ -32,7 +32,7 @@ header.et-l--header .menu-item.btn-primary:hover a {
 }
 
 header #menu-primary-menu>li>a {
-	padding: 1.75em 0;
+	padding: 0.5em 0;
 	display: block;
 }
 
@@ -46,13 +46,13 @@ header #menu-primary-menu li.menu-item.menu-item-has-children>a {
 	align-items: center;
 }
 
-header #menu-primary-menu li.menu-item.menu-item-has-children>a::after {
+/* header #menu-primary-menu li.menu-item.menu-item-has-children>a::after {
 	font-family: 'ETmodules';
 	content: "\33";
 	position: relative;
 	display: inline-block;
 	font-size: 28px;
-}
+} */
 
 nav.header-nav {
 	display: flex;
