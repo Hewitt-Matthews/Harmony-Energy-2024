@@ -1,31 +1,55 @@
 <?php
 
-$current_type = $_GET["type"] ?? NULL;
+$current_type = isset($_GET["type"]) ? $_GET["type"] : NULL;
+$site_url = get_site_url();
 
 $projectsTypesQuery = new WP_Query( array(
 	'post_type' => 'services',
-	'fields' => 'ids',
 	'posts_per_page' => -1,
 	'orderby' => 'title',
   'order' => 'ASC'
 ));
 
-?>
+// Function to build URL preserving other parameters
+function build_type_url($site_url, $new_type = NULL) {
+    $params = $_GET;
+    if ($new_type) {
+        $params['type'] = $new_type;
+    } else {
+        unset($params['type']);
+    }
+    $url = $site_url . "/projects/";
+    if (!empty($params)) {
+        $url .= '?' . http_build_query($params);
+    }
+    return $url;
+}
 
-<select name="type-dropdown" class="cat-list types-list">
+$options = sprintf(
+    '<option value="%s"%s>%s</option>',
+    build_type_url($site_url),
+    empty($current_type) ? ' selected' : '',
+    __('Filter by Type', 'textdomain')
+);
 
-	<option value="" data-slug="" data-id=""><?php esc_attr( _e( 'Filter by Type', 'textdomain' ) ); ?></option>
-	
-	<?php while ( $projectsTypesQuery->have_posts() ) : $projectsTypesQuery->the_post();
-	
-		$id = get_the_ID( );
-		$title = get_the_title( );
-		$permalink = get_the_permalink( );
-		$slug = basename(get_the_permalink( ));
-		   
-	?>
-	
-		<option class="cat-list_item" data-slug="<?= $id ?>" data-id="<?= $slug ?>" <?php if ($id == $current_type) : echo 'selected'; endif; ?>><?= $title ?></option>	
-	
-	<?php endwhile; wp_reset_postdata(); ?>
-</select>
+if ($projectsTypesQuery->have_posts()) {
+    while ($projectsTypesQuery->have_posts()) {
+        $projectsTypesQuery->the_post();
+        $title = get_the_title();
+        $slug = basename(get_the_permalink());
+        $url = build_type_url($site_url, $slug);
+        $selected = ($slug === $current_type) ? ' selected' : '';
+        $options .= sprintf(
+            '<option value="%s"%s>%s</option>',
+            $url,
+            $selected,
+            $title
+        );
+    }
+    wp_reset_postdata();
+}
+
+printf(
+    '<select name="type-dropdown" class="cat-list types-list" onchange="window.location.href=this.value">%s</select>',
+    $options
+);

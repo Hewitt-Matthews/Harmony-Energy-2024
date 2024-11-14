@@ -1,17 +1,62 @@
 <?php
 
-wp_enqueue_script( 'projects_filter', get_stylesheet_directory_uri() . '/js/projects-filter.js', array(), THEME_VERSION);
-
 $meta_query = array();
+$tax_query = array();
 
-$projectsQuery = new WP_Query( array(
-	'post_type' => 'he-projects',
-	'posts_per_page' => -1,
-  'post_status' => 'publish',
-	'orderby' => 'menu_order',
-	'order' => 'ASC',
-	'meta_query' => $meta_query,
-));
+// Handle location filter
+$location_slug = isset($_GET['location']) ? $_GET['location'] : '';
+if (!empty($location_slug)) {
+    $tax_query[] = array(
+        'taxonomy' => 'project-location',
+        'field'    => 'slug',
+        'terms'    => $location_slug
+    );
+}
+
+// Handle type filter using meta query for ACF field
+$type_slug = isset($_GET['type']) ? $_GET['type'] : '';
+if (!empty($type_slug)) {
+    // Get the service post by slug
+    $service = get_page_by_path($type_slug, OBJECT, 'services');
+    
+    if ($service) {
+        $meta_query[] = array(
+            'key' => 'project_type',
+            'value' => $service->ID,
+            'compare' => '='
+        );
+    }
+}
+
+// Handle status filter
+$status_slug = isset($_GET['status']) ? $_GET['status'] : '';
+if (!empty($status_slug)) {
+    $tax_query[] = array(
+        'taxonomy' => 'project-status',
+        'field'    => 'slug',
+        'terms'    => $status_slug
+    );
+    
+}
+
+// If we have multiple queries, set the relation
+if (count($tax_query) > 1) {
+    $tax_query['relation'] = 'AND';
+}
+
+// Debug the final query
+$query_args = array(
+    'post_type' => 'he-projects',
+    'posts_per_page' => -1,
+    'post_status' => 'publish',
+    'orderby' => 'menu_order',
+    'order' => 'ASC',
+    'meta_query' => $meta_query,
+    'tax_query' => $tax_query,
+);
+
+
+$projectsQuery = new WP_Query($query_args);
 
 if ( $projectsQuery->have_posts() ) : ?>
 
@@ -111,7 +156,7 @@ if ( $projectsQuery->have_posts() ) : ?>
 			$project_power = get_field('project_power');
 
 			// Use Weglot's language detection
-			$current_language = weglot_get_current_language();
+			// $current_language = weglot_get_current_language();
 			$project_url = '';
 
 			// Determine the project URL based on the current language
@@ -126,7 +171,6 @@ if ( $projectsQuery->have_posts() ) : ?>
 			} else {
 				$project_url = get_field('project_url_en', $post_id); // Default to English URL
 			}
-			
 		?>
 
 		<?php if (!empty($project_url)) : ?> <!-- Check if the project URL is not empty -->
