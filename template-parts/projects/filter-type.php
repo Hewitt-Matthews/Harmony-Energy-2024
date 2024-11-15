@@ -1,4 +1,5 @@
 <?php
+require_once('filter-helpers.php');
 
 $current_type = isset($_GET["type"]) ? $_GET["type"] : NULL;
 $site_url = get_site_url();
@@ -18,7 +19,9 @@ function build_type_url($site_url, $new_type = NULL) {
     } else {
         unset($params['type']);
     }
-    $url = $site_url . "/projects/";
+    
+    $current_lang = get_current_language_prefix();
+    $url = $site_url . "/" . $current_lang . "projects/";
     if (!empty($params)) {
         $url .= '?' . http_build_query($params);
     }

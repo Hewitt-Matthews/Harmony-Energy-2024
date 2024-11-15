@@ -1,4 +1,5 @@
 <?php
+require_once('filter-helpers.php');
 
 $current_status = isset($_GET["status"]) ? $_GET["status"] : NULL;
 $site_url = get_site_url();
@@ -11,18 +12,15 @@ $statuses = get_terms(array(
 
 // Function to build URL preserving other parameters
 function build_status_url($site_url, $new_status = NULL) {
-    // Get existing parameters
     $params = $_GET;
-    
-    // Update status parameter
     if ($new_status) {
         $params['status'] = $new_status;
     } else {
         unset($params['status']);
     }
     
-    // Build URL
-    $url = $site_url . "/projects/";
+    $current_lang = get_current_language_prefix();
+    $url = $site_url . "/" . $current_lang . "projects/";
     if (!empty($params)) {
         $url .= '?' . http_build_query($params);
     }

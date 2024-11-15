@@ -566,15 +566,7 @@ add_action('admin_notices', 'display_warning_message');
 // $team_members = json_decode($team_members_json, true);
 // create_team_member_posts($team_members);
 
-// Add rewrite rules for projects
-function add_projects_rewrite_rules() {
-    add_rewrite_rule(
-        'projects/([^/]+)/?$',
-        'index.php?pagename=projects&location=$matches[1]',
-        'top'
-    );
-}
-add_action('init', 'add_projects_rewrite_rules');
+
 
 // Add location as an allowed query var
 function add_location_query_vars($vars) {

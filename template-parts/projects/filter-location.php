@@ -1,4 +1,6 @@
 <?php
+require_once('filter-helpers.php');
+
 // Get current filter values from URL
 $current_location = isset($_GET["location"]) ? $_GET["location"] : NULL;
 $site_url = get_site_url();
@@ -11,18 +13,15 @@ $locations = get_terms(array(
 
 // Function to build URL preserving other parameters
 function build_filter_url($site_url, $new_location = NULL) {
-    // Get existing parameters
     $params = $_GET;
-    
-    // Update location parameter
     if ($new_location) {
         $params['location'] = $new_location;
     } else {
         unset($params['location']);
     }
     
-    // Build URL
-    $url = $site_url . "/projects/";
+    $current_lang = get_current_language_prefix();
+    $url = $site_url . "/" . $current_lang . "projects/";
     if (!empty($params)) {
         $url .= '?' . http_build_query($params);
     }

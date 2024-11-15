@@ -1,4 +1,17 @@
 <?php
+// Add this at the very top of the file
+echo '<div style="position: fixed; top: 100px; right: 20px; z-index: 9999; max-width: 500px;">';
+echo '<pre style="background: #fff; color: #000; padding: 15px; border: 2px solid red;">';
+echo "Weglot Debug:\n";
+if (function_exists('weglot_get_current_language')) {
+    echo "Current Language: " . weglot_get_current_language() . "\n";
+}
+if (function_exists('weglot_get_original_language')) {
+    echo "Original Language: " . weglot_get_original_language() . "\n";
+}
+echo "Current URL: " . $_SERVER['REQUEST_URI'] . "\n";
+echo '</pre>';
+echo '</div>';
 
 $meta_query = array();
 $tax_query = array();
@@ -156,7 +169,7 @@ if ( $projectsQuery->have_posts() ) : ?>
 			$project_power = get_field('project_power');
 
 			// Use Weglot's language detection
-			// $current_language = weglot_get_current_language();
+			$current_language = weglot_get_current_language();
 			$project_url = '';
 
 			// Determine the project URL based on the current language
